@@ -1,2 +1,26 @@
-Developer studioooo
-hhhgfsvsnsnsn
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/your-repo.git'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                sshagent(['your-ssh-credentials']) {
+                    sh "ssh user@178.63.54.26 'cd /var/www/html && git pull'"
+                }
+            }
+        }
+    }
+}
