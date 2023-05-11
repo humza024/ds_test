@@ -18,7 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent(['your-ssh-credentials']) {
-                    sh "ssh user@178.63.54.26 'cd /var/www/html && git pull'"
+                    sh "ssh user@178.63.54.26 'cd /var/www/html && git pull '"
                 }
             }
         }
